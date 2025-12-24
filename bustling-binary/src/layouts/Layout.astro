@@ -24,14 +24,75 @@
 
 	<body>
 		<slot />
+
 		<script is:inline>
 			(function () {
-				const nav = document.querySelector(".topnav");
-				if (!nav) return;
+				const ADJUST = -14;
 
-				const h = nav.getBoundingClientRect().height;
-				document.documentElement.style.scrollPaddingTop =
-					Math.ceil(h + 8) + "px";
+				function setOffset() {
+					const nav = document.querySelector(".topnav");
+					if (!nav) return;
+
+					const h = Math.ceil(nav.getBoundingClientRect().height);
+					const value = Math.max(0, h + ADJUST);
+
+					document.documentElement.style.scrollPaddingTop = value + "px";
+				}
+
+				setOffset();
+				window.addEventListener("resize", setOffset);
+
+				if (document.fonts?.ready) {
+					document.fonts.ready.then(setOffset);
+				}
+			})();
+		</script>
+
+		<script is:inline>
+			(function () {
+				/** @param {HTMLAnchorElement} a */
+				function getHashId(a) {
+					const href = a.getAttribute("href") || "";
+					const idx = href.indexOf("#");
+					if (idx === -1) return "";
+					return href.slice(idx + 1);
+				}
+
+				/** @param {string} id */
+				function scrollToCenter(id) {
+					const target = document.getElementById(id);
+					if (!target) return;
+
+					target.scrollIntoView({
+						behavior: "smooth",
+						block: "center",
+					});
+
+					history.pushState(null, "", "#" + id);
+				}
+
+				document.addEventListener("click", (e) => {
+					const t = e.target;
+					if (!(t instanceof Element)) return;
+
+					const a = t.closest('a[href^="#"], a[href^="/#"]');
+					if (!(a instanceof HTMLAnchorElement)) return;
+
+					const href = a.getAttribute("href") || "";
+					const id = getHashId(a);
+					if (!id) return;
+
+					const isHome = location.pathname === "/" || location.pathname === "";
+					if (!isHome && href.startsWith("/#")) return;
+
+					e.preventDefault();
+					scrollToCenter(id);
+				});
+
+				window.addEventListener("load", () => {
+					const id = (location.hash || "").replace("#", "");
+					if (id) scrollToCenter(id);
+				});
 			})();
 		</script>
 	</body>
@@ -45,7 +106,6 @@
 		width: 100%;
 		max-width: 100%;
 		background: #fffaf9;
-
 		overflow-x: clip;
 	}
 
@@ -65,10 +125,6 @@
 	html {
 		scroll-behavior: smooth;
 		scroll-padding-top: 56px;
-	}
-
-	section[id] {
-		scroll-margin-top: 0;
 	}
 
 	body {
