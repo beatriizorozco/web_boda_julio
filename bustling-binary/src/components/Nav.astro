@@ -137,8 +137,7 @@
             background: rgba(255, 255, 255, 0.6);
             color: rgba(63, 58, 54, 0.9);
         }
-
-        /* ✅ MÓVIL: el menú pasa a "pestañas" en segunda fila con scroll horizontal */
+        
         @media (max-width: 720px) {
             .topnav {
                 flex-direction: column;
@@ -159,7 +158,7 @@
                     #000 95%,
                     transparent 100%
                 );
-                scrollbar-width: thin; /* Firefox */
+                scrollbar-width: thin;
                 scrollbar-color: rgba(63, 58, 54, 0.22) transparent;
             }
             .topnav .links::-webkit-scrollbar {
@@ -178,11 +177,9 @@
                 padding-bottom: 6px;
                 gap: 10px;
 
-                /* evita scroll lateral de página por el menú */
                 max-width: 100%;
             }
 
-            /* opcional: “fade” suave en el borde derecho (si quieres) */
             .links::-webkit-scrollbar {
                 height: 6px;
             }
