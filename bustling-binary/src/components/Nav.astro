@@ -1,5 +1,13 @@
 <nav class="topnav">
-    <a class="brand" href="/">J&A</a>
+    <a class="brand" href="/">
+        J&amp;A
+        <img
+            src="/anillos.png"
+            alt=""
+            aria-hidden="true"
+            class="rings-img"
+        />
+    </a>
 
     <div class="links">
         <a class="link" href="/">Inicio</a>
@@ -101,6 +109,10 @@
         }
 
         .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+
             font-family: "Cormorant Garamond", serif;
             font-weight: 500;
             letter-spacing: 0.06em;
@@ -109,6 +121,15 @@
             text-decoration: none;
             font-size: 0.95rem;
             flex: 0 0 auto;
+        }
+
+        .rings-img {
+            height: 2.5em;
+            width: auto;
+            opacity: 0.55;
+            transform: translateY(0.08em);
+            pointer-events: none;
+            user-select: none;
         }
 
         .links {
@@ -137,7 +158,7 @@
             background: rgba(255, 255, 255, 0.6);
             color: rgba(63, 58, 54, 0.9);
         }
-        
+
         @media (max-width: 720px) {
             .topnav {
                 flex-direction: column;
@@ -176,7 +197,6 @@
                 -webkit-overflow-scrolling: touch;
                 padding-bottom: 6px;
                 gap: 10px;
-
                 max-width: 100%;
             }
 
