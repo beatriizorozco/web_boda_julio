@@ -1,15 +1,20 @@
 ---
 const imagen = "/fotoJulioAndrea.webp";
+const imagenMovil = "/fotoJulioAndreaMovil.webp"
 ---
 
 <section class="hero">
     <div class="hero__content">
-        <h1 class="hero__title">Julio & Andrea</h1>
+        <h1 class="hero__title">Andrea & Julio</h1>
         <p class="hero__subtitle">Nos casamos</p>
     </div>
 
     <div class="hero__media">
-        <img class="hero__img" src={imagen} alt="Foto de Julio y Andrea" />
+        <img class="hero_img" src={imagen} alt="Foto de Andrea y Julio" />
+    </div>
+
+    <div class="hero__media__movil">
+        <img class="hero_img_movil" src={imagenMovil} alt="Foto de Andrea y Julio">
     </div>
 
     <div class="hero__overlay"></div>
@@ -116,7 +121,7 @@ const imagen = "/fotoJulioAndrea.webp";
             background: #fffaf9;
         }
 
-        .hero__media {
+        .hero__media__movil {
             position: relative;
             inset: auto;
             width: 100%;
@@ -124,7 +129,7 @@ const imagen = "/fotoJulioAndrea.webp";
             overflow: hidden;
         }
 
-        .hero__img {
+        .hero_img_movil {
             height: 100%;
             width: 100%;
             object-fit: cover;
