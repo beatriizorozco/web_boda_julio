@@ -1,156 +1,165 @@
 ---
 const imagen = "/fotoJulioAndrea.webp";
-const imagenMovil = "/fotoJulioAndreaMovil.webp"
+const imagenMovil = "/fotoJulioAndreaMovil.webp";
 ---
 
 <section class="hero">
-    <div class="hero__content">
-        <h1 class="hero__title">Andrea & Julio</h1>
-        <p class="hero__subtitle">Nos casamos</p>
-    </div>
+	<div class="hero__content">
+		<h1 class="hero__title">Andrea & Julio</h1>
+		<p class="hero__subtitle">Nos casamos</p>
+	</div>
 
-    <div class="hero__media">
-        <img class="hero_img" src={imagen} alt="Foto de Andrea y Julio" />
-    </div>
+	<!-- Desktop / general -->
+	<div class="hero__media">
+		<img class="hero__img" src={imagen} alt="Foto de Andrea y Julio" />
+	</div>
 
-    <div class="hero__media__movil">
-        <img class="hero_img_movil" src={imagenMovil} alt="Foto de Andrea y Julio">
-    </div>
+	<!-- Móvil -->
+	<div class="hero__media--movil">
+		<img
+			class="hero__img--movil"
+			src={imagenMovil}
+			alt="Foto de Andrea y Julio"
+		/>
+	</div>
 
-    <div class="hero__overlay"></div>
+	<div class="hero__overlay"></div>
 </section>
 
 <style>
-    .hero {
-        position: relative;
-        left: 50%;
-        right: 50%;
-        width: 100%;
-        margin-left: -50vw;
-        margin-right: -50vw;
+	.hero {
+		position: relative;
+		left: 50%;
+		right: 50%;
+		width: 100%;
+		margin-left: -50vw;
+		margin-right: -50vw;
 
-        overflow: hidden;
-        background: #fffaf9;
-    }
+		overflow: hidden;
+		background: #fffaf9;
+	}
 
-    .hero__media {
-        position: absolute;
-        inset: 0;
-    }
+	/* Desktop por defecto */
+	.hero__media {
+		position: absolute;
+		inset: 0;
+	}
 
-    .hero__img {
-        width: 100%;
-        height: 100%;
-        display: block;
-        object-fit: cover;
-        object-position: center 38%;
-    }
+	.hero__img {
+		width: 100%;
+		height: 100%;
+		display: block;
+		object-fit: cover;
+		object-position: center 38%;
+	}
 
-    .hero__overlay {
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
+	/* Oculta móvil por defecto */
+	.hero__media--movil {
+		display: none;
+	}
 
-        background:
-            radial-gradient(
-                900px 500px at 18% 18%,
-                rgba(255, 230, 236, 0.55),
-                rgba(255, 230, 236, 0) 60%
-            ),
-            radial-gradient(
-                800px 480px at 85% 15%,
-                rgba(210, 226, 255, 0.45),
-                rgba(210, 226, 255, 0) 55%
-            ),
-            linear-gradient(
-                to bottom,
-                rgba(255, 250, 249, 0.65),
-                rgba(255, 250, 249, 0.25)
-            );
-        opacity: 0.35;
-    }
+	.hero__overlay {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
 
-    .hero__content {
-        position: relative;
-        z-index: 1;
-        max-width: 1100px;
+		background:
+			radial-gradient(
+				900px 500px at 18% 18%,
+				rgba(255, 230, 236, 0.55),
+				rgba(255, 230, 236, 0) 60%
+			),
+			radial-gradient(
+				800px 480px at 85% 15%,
+				rgba(210, 226, 255, 0.45),
+				rgba(210, 226, 255, 0) 55%
+			),
+			linear-gradient(
+				to bottom,
+				rgba(255, 250, 249, 0.65),
+				rgba(255, 250, 249, 0.25)
+			);
+		opacity: 0.35;
+	}
 
-        padding-top: clamp(26px, 6vh, 90px);
-        padding-left: clamp(16px, 6vw, 80px);
-        padding-right: clamp(16px, 4vw, 48px);
-    }
+	.hero__content {
+		position: relative;
+		z-index: 1;
+		max-width: 1100px;
 
-    .hero__title {
-        margin: 0;
-        font-family: "Cormorant Garamond", serif;
-        font-weight: 500;
-        letter-spacing: 0.04em;
-        color: rgba(40, 35, 32, 0.88);
-        text-transform: uppercase;
-        font-size: clamp(34px, 5.2vw, 78px);
-        line-height: 0.92;
-        text-shadow: 0 10px 30px rgba(255, 250, 249, 0.9);
-    }
+		padding-top: clamp(26px, 6vh, 90px);
+		padding-left: clamp(16px, 6vw, 80px);
+		padding-right: clamp(16px, 4vw, 48px);
+	}
 
-    .hero__subtitle {
-        margin: 10px 0 0;
-        font-family: "Montserrat", sans-serif;
-        font-size: clamp(11px, 2vw, 16px);
-        font-weight: 300;
-        letter-spacing: 0.22em;
-        padding-left: 1.3em;
-        text-transform: uppercase;
-        color: rgba(40, 35, 32, 0.75);
-        opacity: 0.75;
-    }
+	.hero__title {
+		margin: 0;
+		font-family: "Cormorant Garamond", serif;
+		font-weight: 500;
+		letter-spacing: 0.04em;
+		color: rgba(40, 35, 32, 0.88);
+		text-transform: uppercase;
+		font-size: clamp(34px, 5.2vw, 78px);
+		line-height: 0.92;
+		text-shadow: 0 10px 30px rgba(255, 250, 249, 0.9);
+	}
 
-    @media (min-width: 900px) {
-        .hero {
-            height: clamp(520px, 72vh, 860px);
-        }
-        .hero__img {
-            object-position: center 36%;
-        }
-    }
+	.hero__subtitle {
+		margin: 10px 0 0;
+		font-family: "Montserrat", sans-serif;
+		font-size: clamp(11px, 2vw, 16px);
+		font-weight: 300;
+		letter-spacing: 0.22em;
+		padding-left: 1.3em;
+		text-transform: uppercase;
+		color: rgba(40, 35, 32, 0.75);
+		opacity: 0.75;
+	}
 
-    @media (max-width: 900px) {
-        .hero {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-            background: #fffaf9;
-        }
+	@media (min-width: 900px) {
+		.hero {
+			height: clamp(520px, 72vh, 860px);
+		}
+		.hero__img {
+			object-position: center 36%;
+		}
+	}
 
-        .hero__media__movil {
-            position: relative;
-            inset: auto;
-            width: 100%;
-            height: clamp(240px, 36vh, 360px);
-            overflow: hidden;
-        }
+	@media (max-width: 900px) {
+		.hero__media {
+			display: none;
+		}
 
-        .hero_img_movil {
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-            object-position: center 35%;
-            display: block;
-        }
+		.hero__media--movil {
+			display: block;
+			position: relative;
+			width: 100%;
+			height: clamp(240px, 36vh, 360px);
+			overflow: hidden;
+		}
 
-        .hero__content {
-            padding: 18px 16px 12px;
-            max-width: 100%;
-        }
+		.hero__img--movil {
+			height: 100%;
+			width: 100%;
+			object-fit: cover;
+			object-position: center 35%;
+			display: block;
+		}
 
-        .hero__title {
-            font-size: clamp(28px, 8vw, 44px);
-            line-height: 0.95;
-        }
+		.hero__content {
+			padding: 18px 16px 12px;
+			max-width: 100%;
+		}
 
-        .hero__subtitle {
-            padding-left: 0;
-            font-size: 12px;
-            letter-spacing: 0.18em;
-        }
-    }
+		.hero__title {
+			font-size: clamp(28px, 8vw, 44px);
+			line-height: 0.95;
+		}
+
+		.hero__subtitle {
+			padding-left: 0;
+			font-size: 12px;
+			letter-spacing: 0.18em;
+		}
+	}
 </style>
