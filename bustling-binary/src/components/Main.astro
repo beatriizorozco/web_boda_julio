@@ -80,7 +80,11 @@ import Button from "./Button.astro";
         </p>
 
         <div class="datos-regalo">
-            <p><strong>IBAN:</strong> ES96 0182 7 4 02 5602 0171 5023</p>
+            <p>
+                <strong>IBAN:</strong>
+                <span class="no-autolink">ES96 0182 7402 5602 0171 5023</span>
+            </p>
+
             <p class="nota">Concepto: “Boda Andrea y Julio”</p>
         </div>
     </section>
@@ -225,6 +229,12 @@ import Button from "./Button.astro";
         border: 1px solid rgba(63, 58, 54, 0.12);
         border-radius: 16px;
         background: rgba(255, 255, 255, 0.55);
+    }
+    .no-autolink {
+        color: inherit;
+        text-decoration: none;
+        font-weight: inherit;
+        -webkit-touch-callout: none;
     }
 
     @media (max-width: 600px) {
