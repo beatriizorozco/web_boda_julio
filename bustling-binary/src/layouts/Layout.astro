@@ -20,7 +20,10 @@
 			href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap"
 			rel="stylesheet"
 		/>
-		<meta name="format-detection" content="telephone=no,address=no,email=no" />
+		<meta
+			name="format-detection"
+			content="telephone=no,address=no,email=no"
+		/>
 	</head>
 
 	<body>
@@ -37,7 +40,8 @@
 					const h = Math.ceil(nav.getBoundingClientRect().height);
 					const value = Math.max(0, h + ADJUST);
 
-					document.documentElement.style.scrollPaddingTop = value + "px";
+					document.documentElement.style.scrollPaddingTop =
+						value + "px";
 				}
 
 				setOffset();
@@ -60,14 +64,29 @@
 				}
 
 				/** @param {string} id */
-				function scrollToCenter(id) {
+				function scrollToSmart(id) {
 					const target = document.getElementById(id);
 					if (!target) return;
 
-					target.scrollIntoView({
-						behavior: "smooth",
-						block: "center",
-					});
+					const isUbicacion = id === "ubicacion";
+
+					if (isUbicacion) {
+						target.scrollIntoView({
+							behavior: "smooth",
+							block: "start",
+						});
+						setTimeout(() => {
+							window.scrollBy({
+								top: -40, // 👈 prueba entre -30 y -60
+								behavior: "smooth",
+							});
+						}, 300);
+					} else {
+						target.scrollIntoView({
+							behavior: "smooth",
+							block: "center",
+						});
+					}
 
 					history.pushState(null, "", "#" + id);
 				}
@@ -83,16 +102,17 @@
 					const id = getHashId(a);
 					if (!id) return;
 
-					const isHome = location.pathname === "/" || location.pathname === "";
+					const isHome =
+						location.pathname === "/" || location.pathname === "";
 					if (!isHome && href.startsWith("/#")) return;
 
 					e.preventDefault();
-					scrollToCenter(id);
+					scrollToSmart(id);
 				});
 
 				window.addEventListener("load", () => {
 					const id = (location.hash || "").replace("#", "");
-					if (id) scrollToCenter(id);
+					if (id) scrollToSmart(id);
 				});
 			})();
 		</script>
