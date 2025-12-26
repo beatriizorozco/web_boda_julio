@@ -1,12 +1,7 @@
 <nav class="topnav">
     <a class="brand" href="/">
         A&amp;J
-        <img
-            src="/anillos.png"
-            alt=""
-            aria-hidden="true"
-            class="rings-img"
-        />
+        <img src="/anillos.png" alt="" aria-hidden="true" class="rings-img" />
     </a>
 
     <div class="links">
@@ -18,7 +13,7 @@
             class="link"
             href="/fotos"
             id="nav-fotos"
-            data-release="2026-05-23T13:00:00"
+            data-release="2025-12-26T05:30:00+02:00"
             hidden
         >
             Fotos
@@ -26,37 +21,12 @@
     </div>
 
     <script is:inline>
-        /** @returns {Date} */
         function madridNow() {
-            const s = new Intl.DateTimeFormat("sv-SE", {
-                timeZone: "Europe/Madrid",
-                year: "numeric",
-                month: "2-digit",
-                day: "2-digit",
-                hour: "2-digit",
-                minute: "2-digit",
-                second: "2-digit",
-                hour12: false,
-            }).format(new Date());
-            return new Date(s.replace(" ", "T"));
+            return new Date();
         }
 
-        /**
-         * @param {string} isoLocal
-         * @returns {Date}
-         */
         function madridDate(isoLocal) {
-            const s = new Intl.DateTimeFormat("sv-SE", {
-                timeZone: "Europe/Madrid",
-                year: "numeric",
-                month: "2-digit",
-                day: "2-digit",
-                hour: "2-digit",
-                minute: "2-digit",
-                second: "2-digit",
-                hour12: false,
-            }).format(new Date(isoLocal));
-            return new Date(s.replace(" ", "T"));
+            return new Date(isoLocal);
         }
 
         /** @type {HTMLAnchorElement|null} */
@@ -64,7 +34,8 @@
 
         if (link) {
             const releaseISO =
-                link.getAttribute("data-release") || "2025-12-26T04:00:00";
+                link.getAttribute("data-release") ||
+                "2025-12-26T04:00:00+01:00";
 
             const host = location.hostname;
             const isLocal =
@@ -79,6 +50,7 @@
 
             if (isLocal || now >= release) link.hidden = false;
         }
+
         (function () {
             const isHome =
                 location.pathname === "/" || location.pathname === "";
@@ -86,7 +58,6 @@
 
             const ids = ["nav-ubicacion", "nav-asistencia", "nav-lista"];
             ids.forEach((id) => {
-                /** @type {HTMLAnchorElement|null} */
                 const a = document.getElementById(id);
                 if (a) a.href = "/" + a.getAttribute("href");
             });
