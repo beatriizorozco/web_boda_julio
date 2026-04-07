@@ -370,10 +370,12 @@ import Button from "./Button.astro";
     }
 
     .chips-transporte {
-        display: flex;
+        display: grid;
+        grid-template-columns: repeat(3, max-content);
         justify-content: center;
-        gap: 8px;
-        flex-wrap: wrap;
+        gap: 12px;
+        margin: 14px auto 0;
+        width: 100%;
     }
 
     .chip {
@@ -389,7 +391,6 @@ import Button from "./Button.astro";
         background: rgba(255, 255, 255, 0.55);
         letter-spacing: 0.02em;
         white-space: nowrap;
-        display: inline-flex;
     }
 
     .chip strong {
@@ -463,11 +464,9 @@ import Button from "./Button.astro";
         }
 
         .chips-transporte {
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            gap: 8px;
-            flex-wrap: wrap;
+            grid-template-columns: 1fr;
+            justify-items: center;
+            gap: 10px;
         }
 
         .chip {
