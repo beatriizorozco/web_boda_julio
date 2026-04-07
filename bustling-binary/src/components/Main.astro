@@ -82,6 +82,34 @@ import Button from "./Button.astro";
                     <span class="muted">(por confirmar)</span>
                 </span>
             </div>
+
+            <div class="puntos-salida">
+                <div class="punto-salida">
+                    <p class="etiqueta-salida">Salida autobús</p>
+                    <h4>Majadahonda</h4>
+                    <p>
+                        C. Las Norias, 66<br />
+                        28221 Majadahonda, Madrid
+                    </p>
+                    <Button
+                        url="https://maps.app.goo.gl/9ZdGU53XgV24nRJx6?g_st=iw"
+                        text="Ver ubicación"
+                    />
+                </div>
+
+                <div class="punto-salida">
+                    <p class="etiqueta-salida">Salida autobús</p>
+                    <h4>Madrid · Av. de América</h4>
+                    <p>
+                        Av. de América, 4<br />
+                        Salamanca, 28028 Madrid
+                    </p>
+                    <Button
+                        url="https://maps.app.goo.gl/CitQHob2tCGrphGJ7?g_st=iw"
+                        text="Ver ubicación"
+                    />
+                </div>
+            </div>
         </div>
     </section>
 
@@ -279,6 +307,7 @@ import Button from "./Button.astro";
         border-radius: 16px;
         background: rgba(255, 255, 255, 0.55);
     }
+
     .no-autolink {
         color: inherit;
         text-decoration: none;
@@ -371,6 +400,46 @@ import Button from "./Button.astro";
         color: rgba(63, 58, 54, 0.55);
     }
 
+    .puntos-salida {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+        margin: 28px auto 0;
+        max-width: 760px;
+    }
+
+    .punto-salida {
+        padding: 24px 20px;
+        border: 1px solid rgba(63, 58, 54, 0.12);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.65);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.03);
+    }
+
+    .etiqueta-salida {
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.68rem;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: rgba(63, 58, 54, 0.45);
+        margin-bottom: 8px;
+    }
+
+    .punto-salida h4 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.35rem;
+        color: #3f3a36;
+        margin: 0 0 8px;
+    }
+
+    .punto-salida p {
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.84rem;
+        line-height: 1.7;
+        color: rgba(63, 58, 54, 0.75);
+        margin: 0 0 18px;
+    }
+
     @media (max-width: 600px) {
         .lugares {
             grid-template-columns: 1fr;
@@ -391,14 +460,25 @@ import Button from "./Button.astro";
             font-size: 0.65rem;
             letter-spacing: 0.1em;
         }
+
         .chips-transporte {
             grid-template-columns: 1fr;
             justify-items: center;
             gap: 10px;
         }
+
         .chip {
             white-space: normal;
             text-align: center;
+        }
+
+        .puntos-salida {
+            grid-template-columns: 1fr;
+            gap: 14px;
+        }
+
+        .punto-salida {
+            padding: 20px 16px;
         }
     }
 </style>
