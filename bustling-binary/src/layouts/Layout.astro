@@ -1,200 +1,126 @@
 <!doctype html>
 <html lang="es">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="logo_boda_2.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Julio & Andrea</title>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/logo_boda_2.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <meta name="format-detection" content="telephone=no,address=no,email=no" />
+        <title>Casilda & Rodrigo</title>
 
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Imperial+Script&display=swap"
-			rel="stylesheet"
-		/>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Montserrat:wght@300;400;500&display=swap"
+            rel="stylesheet"
+        />
+    </head>
 
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap"
-			rel="stylesheet"
-		/>
-		<meta
-			name="format-detection"
-			content="telephone=no,address=no,email=no"
-		/>
-	</head>
+    <body>
+        <slot />
 
-	<body>
-		<slot />
+        <script is:inline>
+            (function () {
+                function getHashId(a) {
+                    const href = a.getAttribute("href") || "";
+                    const idx = href.indexOf("#");
+                    if (idx === -1) return "";
+                    return href.slice(idx + 1);
+                }
 
-		<script is:inline>
-			(function () {
-				const ADJUST = -14;
+                function scrollToSmart(id) {
+                    const target = document.getElementById(id);
+                    if (!target) return;
 
-				function setOffset() {
-					const nav = document.querySelector(".topnav");
-					if (!nav) return;
+                    target.scrollIntoView({
+                        behavior: "smooth",
+                        block: id === "rsvp" ? "center" : "start",
+                    });
 
-					const h = Math.ceil(nav.getBoundingClientRect().height);
-					const value = Math.max(0, h + ADJUST);
+                    history.pushState(null, "", "#" + id);
+                }
 
-					document.documentElement.style.scrollPaddingTop =
-						value + "px";
-				}
+                document.addEventListener("click", (e) => {
+                    const t = e.target;
+                    if (!(t instanceof Element)) return;
 
-				setOffset();
-				window.addEventListener("resize", setOffset);
+                    const a = t.closest('a[href^="#"], a[href^="/#"]');
+                    if (!(a instanceof HTMLAnchorElement)) return;
 
-				if (document.fonts?.ready) {
-					document.fonts.ready.then(setOffset);
-				}
-			})();
-		</script>
+                    const href = a.getAttribute("href") || "";
+                    const id = getHashId(a);
+                    if (!id) return;
 
-		<script is:inline>
-			(function () {
-				/** @param {HTMLAnchorElement} a */
-				function getHashId(a) {
-					const href = a.getAttribute("href") || "";
-					const idx = href.indexOf("#");
-					if (idx === -1) return "";
-					return href.slice(idx + 1);
-				}
+                    const isHome = location.pathname === "/" || location.pathname === "";
+                    if (!isHome && href.startsWith("/#")) return;
 
-				/** @param {string} id */
-				function scrollToSmart(id) {
-					const target = document.getElementById(id);
-					if (!target) return;
+                    e.preventDefault();
+                    scrollToSmart(id);
+                });
 
-					const isUbicacion = id === "ubicacion";
-
-					if (isUbicacion) {
-						target.scrollIntoView({
-							behavior: "smooth",
-							block: "start",
-						});
-						setTimeout(() => {
-							window.scrollBy({
-								top: -40, // 👈 prueba entre -30 y -60
-								behavior: "smooth",
-							});
-						}, 300);
-					} else {
-						target.scrollIntoView({
-							behavior: "smooth",
-							block: "center",
-						});
-					}
-
-					history.pushState(null, "", "#" + id);
-				}
-
-				document.addEventListener("click", (e) => {
-					const t = e.target;
-					if (!(t instanceof Element)) return;
-
-					const a = t.closest('a[href^="#"], a[href^="/#"]');
-					if (!(a instanceof HTMLAnchorElement)) return;
-
-					const href = a.getAttribute("href") || "";
-					const id = getHashId(a);
-					if (!id) return;
-
-					const isHome =
-						location.pathname === "/" || location.pathname === "";
-					if (!isHome && href.startsWith("/#")) return;
-
-					e.preventDefault();
-					scrollToSmart(id);
-				});
-
-				window.addEventListener("load", () => {
-					const id = (location.hash || "").replace("#", "");
-					if (id) scrollToSmart(id);
-				});
-			})();
-		</script>
-	</body>
+                window.addEventListener("load", () => {
+                    const id = (location.hash || "").replace("#", "");
+                    if (id) scrollToSmart(id);
+                });
+            })();
+        </script>
+    </body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		padding: 0;
-		width: 100%;
-		max-width: 100%;
-		background: #fffaf9;
-		overflow-x: clip;
-	}
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        max-width: 100%;
+        background: #f3eee6;
+        overflow-x: clip;
+    }
 
-	@supports not (overflow-x: clip) {
-		html,
-		body {
-			overflow-x: hidden;
-		}
-	}
+    @supports not (overflow-x: clip) {
+        html,
+        body {
+            overflow-x: hidden;
+        }
+    }
 
-	*,
-	*::before,
-	*::after {
-		box-sizing: border-box;
-	}
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
 
-	html {
-		scroll-behavior: smooth;
-		scroll-padding-top: 56px;
-	}
+    html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 92px;
+    }
 
-	body {
-		font-family:
-			"Montserrat",
-			system-ui,
-			-apple-system,
-			Segoe UI,
-			Roboto,
-			Arial,
-			sans-serif;
-		color: rgba(63, 58, 54, 0.9);
-	}
+    body {
+        min-width: 320px;
+        font-family:
+            "Montserrat",
+            system-ui,
+            -apple-system,
+            Segoe UI,
+            Roboto,
+            Arial,
+            sans-serif;
+        color: rgba(41, 38, 34, 0.9);
+        text-rendering: geometricPrecision;
+    }
 
-	.topnav .links {
-		min-width: 0;
-	}
+    @media (max-width: 820px) {
+        html {
+            scroll-padding-top: 108px;
+        }
 
-	.topnav .link {
-		white-space: nowrap;
-		flex: 0 0 auto;
-	}
+        body {
+            padding-bottom: 0;
+        }
+    }
 
-	@media (max-width: 720px) {
-		.topnav {
-			flex-direction: column;
-			align-items: flex-start;
-			justify-content: flex-start;
-			gap: 10px;
-			padding: 12px 14px 10px;
-		}
-
-		.topnav .links {
-			width: 100%;
-			justify-content: flex-start;
-			flex-wrap: nowrap;
-			overflow-x: auto;
-			-webkit-overflow-scrolling: touch;
-			padding-bottom: 6px;
-			max-width: 100%;
-			gap: 10px;
-		}
-
-		.topnav .links::-webkit-scrollbar {
-			height: 6px;
-		}
-		.topnav .links::-webkit-scrollbar-thumb {
-			background: rgba(63, 58, 54, 0.12);
-			border-radius: 999px;
-		}
-	}
+    img {
+        max-width: 100%;
+    }
 </style>

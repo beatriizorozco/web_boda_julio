@@ -1,214 +1,154 @@
-<nav class="topnav">
-    <a class="brand" href="/">
-        A&amp;J
-        <img src="/anillos.png" alt="" aria-hidden="true" class="rings-img" />
+<nav class="top-nav" aria-label="Principal">
+    <a class="brand" href="/" aria-label="Inicio">
+        <span>Casilda</span>
+        <span aria-hidden="true">&</span>
+        <span>Rodrigo</span>
     </a>
 
-    <div class="links" id="topnav-links">
-        <a class="link" href="/">Inicio</a>
+    <div class="links">
         <a class="link" href="#ubicacion" id="nav-ubicacion">Ubicación</a>
         <a class="link" href="#rsvp" id="nav-asistencia">Asistencia</a>
-        <a class="link" href="#lista" id="nav-lista">Lista de bodas</a>
+        <a class="link" href="#lista" id="nav-lista">Lista</a>
         <a
             class="link"
             href="/fotos"
             id="nav-fotos"
-            data-release="2026-05-23T13:00:00+02:00"
+            data-release="2026-06-14T13:00:00+02:00"
             hidden
         >
             Fotos
         </a>
     </div>
+</nav>
 
-    <script is:inline>
-        function madridNow() {
-            return new Date();
+<script is:inline>
+    const photosLink = document.getElementById("nav-fotos");
+
+    if (photosLink) {
+        const releaseISO =
+            photosLink.getAttribute("data-release") ||
+            "2026-06-14T13:00:00+02:00";
+
+        const host = location.hostname;
+        const isLocal =
+            host === "localhost" ||
+            host === "127.0.0.1" ||
+            host.startsWith("192.168.") ||
+            host.startsWith("10.") ||
+            host.endsWith(".local");
+
+        if (isLocal || new Date() >= new Date(releaseISO)) {
+            photosLink.hidden = false;
         }
+    }
 
-        function madridDate(isoLocal) {
-            return new Date(isoLocal);
-        }
+    (function () {
+        const isHome = location.pathname === "/" || location.pathname === "";
+        if (isHome) return;
 
-        function updateScrollHint() {
-            const links = document.getElementById("topnav-links");
-            if (!links) return;
+        const ids = ["nav-ubicacion", "nav-asistencia", "nav-lista"];
+        ids.forEach((id) => {
+            const a = document.getElementById(id);
+            if (a) a.href = "/" + a.getAttribute("href");
+        });
+    })();
+</script>
 
-            const hasOverflow = links.scrollWidth > links.clientWidth + 1;
-            links.classList.toggle("scroll-hint", hasOverflow);
-        }
+<style>
+    .top-nav {
+        position: sticky;
+        top: 0;
+        z-index: 30;
+        min-height: 74px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        gap: 18px;
+        padding: 16px clamp(18px, 4vw, 56px);
+        background: rgba(243, 238, 230, 0.9);
+        border-bottom: 1px solid rgba(37, 34, 30, 0.12);
+        backdrop-filter: blur(14px);
+    }
 
-        const link = document.getElementById("nav-fotos");
+    .brand {
+        grid-column: 2;
+        display: inline-flex;
+        align-items: baseline;
+        justify-content: center;
+        gap: 8px;
+        color: #25221e;
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(1.2rem, 2vw, 1.58rem);
+        font-weight: 400;
+        letter-spacing: 0;
+        line-height: 1;
+        text-decoration: none;
+        white-space: nowrap;
+    }
 
-        if (link) {
-            const releaseISO =
-                link.getAttribute("data-release") ||
-                "2026-05-23T13:00:00+02:00";
+    .brand span:nth-child(2) {
+        color: rgba(37, 34, 30, 0.42);
+        font-size: 0.72em;
+        font-style: italic;
+    }
 
-            const host = location.hostname;
-            const isLocal =
-                host === "localhost" ||
-                host === "127.0.0.1" ||
-                host.startsWith("192.168.") ||
-                host.startsWith("10.") ||
-                host.endsWith(".local");
+    .links {
+        grid-column: 3;
+        justify-self: end;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: clamp(14px, 2.2vw, 28px);
+        min-width: 0;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
 
-            const now = madridNow();
-            const release = madridDate(releaseISO);
+    .links::-webkit-scrollbar {
+        display: none;
+    }
 
-            if (isLocal || now >= release) link.hidden = false;
-        }
+    .link {
+        flex: 0 0 auto;
+        color: rgba(37, 34, 30, 0.62);
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.66rem;
+        font-weight: 500;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: color 0.2s ease;
+        white-space: nowrap;
+    }
 
-        (function () {
-            const isHome =
-                location.pathname === "/" || location.pathname === "";
-            if (isHome) return;
+    .link:hover {
+        color: #25221e;
+    }
 
-            const ids = ["nav-ubicacion", "nav-asistencia", "nav-lista"];
-            ids.forEach((id) => {
-                const a = document.getElementById(id);
-                if (a) a.href = "/" + a.getAttribute("href");
-            });
-        })();
-
-        window.addEventListener("load", updateScrollHint);
-        window.addEventListener("resize", updateScrollHint);
-
-        if (document.fonts && document.fonts.ready) {
-            document.fonts.ready.then(updateScrollHint).catch(() => {});
-        }
-
-        updateScrollHint();
-    </script>
-
-    <style>
-        .topnav {
-            position: sticky;
-            top: 0;
-            z-index: 20;
-            background: rgba(255, 250, 249, 0.92);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(63, 58, 54, 0.08);
-            padding: 14px 16px;
-
-            display: grid;
-            grid-template-columns: auto 1fr auto;
+    @media (max-width: 760px) {
+        .top-nav {
+            min-height: 88px;
+            grid-template-columns: 1fr;
             align-items: center;
             gap: 12px;
+            padding: 14px 16px 12px;
         }
 
-        .brand {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-
-            font-family: "Cormorant Garamond", serif;
-            font-weight: 500;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            color: rgba(63, 58, 54, 0.9);
-            text-decoration: none;
-            font-size: 0.95rem;
-
+        .brand,
+        .links {
             grid-column: 1;
-            justify-self: start;
-        }
-
-        .rings-img {
-            height: 2.5em;
-            width: auto;
-            opacity: 0.55;
-            transform: translateY(0.08em);
-            pointer-events: none;
-            user-select: none;
+            justify-self: center;
         }
 
         .links {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            justify-content: flex-end;
-            flex-wrap: nowrap;
-
-            grid-column: 3;
-            justify-self: end;
-
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
+            width: 100%;
+            justify-content: center;
+            gap: 16px;
         }
 
         .link {
-            font-family: "Montserrat", sans-serif;
-            font-size: 0.72rem;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: rgba(63, 58, 54, 0.75);
-            text-decoration: none;
-            padding: 8px 8px;
-            border-radius: 999px;
-            white-space: nowrap;
+            font-size: 0.62rem;
+            letter-spacing: 0.13em;
         }
-
-        .link:hover {
-            background: rgba(255, 255, 255, 0.6);
-            color: rgba(63, 58, 54, 0.9);
-        }
-
-        @media (max-width: 720px) {
-            .topnav {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                padding: 18px 14px 10px;
-                gap: 10px;
-            }
-
-            .topnav .links {
-                position: relative;
-                scrollbar-width: thin;
-                scrollbar-color: rgba(63, 58, 54, 0.15) transparent;
-            }
-
-            .topnav .links.scroll-hint {
-                mask-image: linear-gradient(
-                    to right,
-                    #000 0%,
-                    #000 95%,
-                    transparent 100%
-                );
-                -webkit-mask-image: linear-gradient(
-                    to right,
-                    #000 0%,
-                    #000 95%,
-                    transparent 100%
-                );
-            }
-
-            .topnav .links::-webkit-scrollbar-thumb {
-                background: rgba(63, 58, 54, 0.18);
-                border-radius: 999px;
-            }
-
-            .brand {
-                align-self: center;
-            }
-
-            .links {
-                width: 100%;
-                justify-content: flex-start;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                padding-left: 6px;
-                gap: 5px;
-            }
-
-            .link {
-                padding: 8px 5.8px;
-            }
-
-            .links::-webkit-scrollbar-thumb {
-                background: rgba(63, 58, 54, 0.12);
-                border-radius: 999px;
-            }
-        }
-    </style>
-</nav>
+    }
+</style>
