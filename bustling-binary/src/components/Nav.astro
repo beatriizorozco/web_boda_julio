@@ -1,124 +1,214 @@
-<nav class="top-nav" aria-label="Principal">
-    <a class="brand" href="/" aria-label="Inicio">
-        <span>Casilda</span>
-        <span aria-hidden="true">&</span>
-        <span>Rodrigo</span>
+<nav class="topnav">
+    <a class="brand" href="/">
+        A&amp;J
+        <img src="/anillos.png" alt="" aria-hidden="true" class="rings-img" />
     </a>
 
-    <div class="links">
+    <div class="links" id="topnav-links">
         <a class="link" href="/">Inicio</a>
         <a class="link" href="#ubicacion" id="nav-ubicacion">Ubicación</a>
         <a class="link" href="#rsvp" id="nav-asistencia">Asistencia</a>
-        <a class="link" href="#lista" id="nav-lista">Lista</a>
+        <a class="link" href="#lista" id="nav-lista">Lista de bodas</a>
+        <a
+            class="link"
+            href="/fotos"
+            id="nav-fotos"
+            data-release="2026-05-23T13:00:00+02:00"
+            hidden
+        >
+            Fotos
+        </a>
     </div>
-</nav>
 
-<script is:inline>
-    (function () {
-        const isHome = location.pathname === "/" || location.pathname === "";
-        if (isHome) return;
-
-        const ids = ["nav-ubicacion", "nav-asistencia", "nav-lista"];
-        ids.forEach((id) => {
-            const a = document.getElementById(id);
-            if (a) a.href = "/" + a.getAttribute("href");
-        });
-    })();
-</script>
-
-<style>
-    .top-nav {
-        position: sticky;
-        top: 0;
-        z-index: 30;
-        min-height: 68px;
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-        align-items: center;
-        gap: 18px;
-        padding: 14px clamp(18px, 4vw, 54px);
-        background: rgba(244, 246, 240, 0.94);
-        border-bottom: 1px solid rgba(52, 78, 66, 0.12);
-        backdrop-filter: blur(14px);
-    }
-
-    .brand {
-        grid-column: 2;
-        display: inline-flex;
-        align-items: baseline;
-        justify-content: center;
-        gap: 7px;
-        color: #293d34;
-        font-family: "Cormorant Garamond", serif;
-        font-size: 1.34rem;
-        font-weight: 400;
-        line-height: 1;
-        text-decoration: none;
-        white-space: nowrap;
-    }
-
-    .brand span:nth-child(2) {
-        color: #8da394;
-        font-size: 0.72em;
-        font-style: italic;
-    }
-
-    .links {
-        grid-column: 3;
-        justify-self: end;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        gap: clamp(13px, 2vw, 24px);
-        min-width: 0;
-        overflow-x: auto;
-        scrollbar-width: none;
-    }
-
-    .links::-webkit-scrollbar {
-        display: none;
-    }
-
-    .link {
-        flex: 0 0 auto;
-        color: rgba(41, 61, 52, 0.64);
-        font-family: "Montserrat", sans-serif;
-        font-size: 0.62rem;
-        font-weight: 500;
-        letter-spacing: 0.14em;
-        text-decoration: none;
-        text-transform: uppercase;
-        white-space: nowrap;
-        transition: color 0.2s ease;
-    }
-
-    .link:hover {
-        color: #293d34;
-    }
-
-    @media (max-width: 760px) {
-        .top-nav {
-            min-height: 84px;
-            grid-template-columns: 1fr;
-            gap: 11px;
-            padding: 13px 14px 11px;
+    <script is:inline>
+        function madridNow() {
+            return new Date();
         }
 
-        .brand,
-        .links {
+        function madridDate(isoLocal) {
+            return new Date(isoLocal);
+        }
+
+        function updateScrollHint() {
+            const links = document.getElementById("topnav-links");
+            if (!links) return;
+
+            const hasOverflow = links.scrollWidth > links.clientWidth + 1;
+            links.classList.toggle("scroll-hint", hasOverflow);
+        }
+
+        const link = document.getElementById("nav-fotos");
+
+        if (link) {
+            const releaseISO =
+                link.getAttribute("data-release") ||
+                "2026-05-23T13:00:00+02:00";
+
+            const host = location.hostname;
+            const isLocal =
+                host === "localhost" ||
+                host === "127.0.0.1" ||
+                host.startsWith("192.168.") ||
+                host.startsWith("10.") ||
+                host.endsWith(".local");
+
+            const now = madridNow();
+            const release = madridDate(releaseISO);
+
+            if (isLocal || now >= release) link.hidden = false;
+        }
+
+        (function () {
+            const isHome =
+                location.pathname === "/" || location.pathname === "";
+            if (isHome) return;
+
+            const ids = ["nav-ubicacion", "nav-asistencia", "nav-lista"];
+            ids.forEach((id) => {
+                const a = document.getElementById(id);
+                if (a) a.href = "/" + a.getAttribute("href");
+            });
+        })();
+
+        window.addEventListener("load", updateScrollHint);
+        window.addEventListener("resize", updateScrollHint);
+
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(updateScrollHint).catch(() => {});
+        }
+
+        updateScrollHint();
+    </script>
+
+    <style>
+        .topnav {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: rgba(255, 250, 249, 0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(63, 58, 54, 0.08);
+            padding: 14px 16px;
+
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+
+            font-family: "Cormorant Garamond", serif;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: rgba(63, 58, 54, 0.9);
+            text-decoration: none;
+            font-size: 0.95rem;
+
             grid-column: 1;
-            justify-self: center;
+            justify-self: start;
+        }
+
+        .rings-img {
+            height: 2.5em;
+            width: auto;
+            opacity: 0.55;
+            transform: translateY(0.08em);
+            pointer-events: none;
+            user-select: none;
         }
 
         .links {
-            width: 100%;
-            justify-content: center;
-            gap: 14px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            justify-content: flex-end;
+            flex-wrap: nowrap;
+
+            grid-column: 3;
+            justify-self: end;
+
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .link {
-            font-size: 0.59rem;
-            letter-spacing: 0.11em;
+            font-family: "Montserrat", sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: rgba(63, 58, 54, 0.75);
+            text-decoration: none;
+            padding: 8px 8px;
+            border-radius: 999px;
+            white-space: nowrap;
         }
-    }
-</style>
+
+        .link:hover {
+            background: rgba(255, 255, 255, 0.6);
+            color: rgba(63, 58, 54, 0.9);
+        }
+
+        @media (max-width: 720px) {
+            .topnav {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 18px 14px 10px;
+                gap: 10px;
+            }
+
+            .topnav .links {
+                position: relative;
+                scrollbar-width: thin;
+                scrollbar-color: rgba(63, 58, 54, 0.15) transparent;
+            }
+
+            .topnav .links.scroll-hint {
+                mask-image: linear-gradient(
+                    to right,
+                    #000 0%,
+                    #000 95%,
+                    transparent 100%
+                );
+                -webkit-mask-image: linear-gradient(
+                    to right,
+                    #000 0%,
+                    #000 95%,
+                    transparent 100%
+                );
+            }
+
+            .topnav .links::-webkit-scrollbar-thumb {
+                background: rgba(63, 58, 54, 0.18);
+                border-radius: 999px;
+            }
+
+            .brand {
+                align-self: center;
+            }
+
+            .links {
+                width: 100%;
+                justify-content: flex-start;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                padding-left: 6px;
+                gap: 5px;
+            }
+
+            .link {
+                padding: 8px 5.8px;
+            }
+
+            .links::-webkit-scrollbar-thumb {
+                background: rgba(63, 58, 54, 0.12);
+                border-radius: 999px;
+            }
+        }
+    </style>
+</nav>

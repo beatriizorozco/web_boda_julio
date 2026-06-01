@@ -3,84 +3,164 @@ import Button from "./Button.astro";
 ---
 
 <main>
-    <section class="intro reveal" aria-label="Resumen de la boda">
-        <p>Guadalupe, Cáceres</p>
-        <strong>Sábado 19 de septiembre</strong>
-        <p>2026 · Fecha provisional</p>
-    </section>
+    <header class="info-rapida">
+        <p class="info-principal">Sábado, 23 de mayo de 2026 · 13:00 h</p>
+        <p class="info-secundaria">Madrid</p>
+    </header>
 
-    <section id="ubicacion" class="places" aria-label="Ubicaciones">
-        <article class="place reveal">
-            <figure class="place__image">
-                <img src="/parroquia.webp" alt="Real Monasterio de Nuestra Señora de Guadalupe" loading="lazy" />
-            </figure>
-            <div class="place__body">
-                <p class="kicker">Ceremonia</p>
-                <h2>Real Monasterio de Nuestra Señora de Guadalupe</h2>
-                <p>Plaza Sta. María de Guadalupe<br />10140 Guadalupe, Cáceres</p>
-                <Button url="https://maps.app.goo.gl/X1X32SgFZemfSFDx8" text="Cómo llegar" />
-            </div>
-        </article>
+    <section id="ubicacion" class="lugares">
+        <div class="lugar">
+            <img
+                src="/parroquia.webp"
+                alt="Parroquia de la ceremonia"
+                class="lugar-img"
+            />
 
-        <article class="place reveal">
-            <figure class="place__image">
-                <img src="/banquete.webp" alt="Vista aérea del Cortijo de Gorbea" loading="lazy" />
-            </figure>
-            <div class="place__body">
-                <p class="kicker">Celebración</p>
-                <h2>Cortijo de Gorbea</h2>
-                <p>Carretera EX 116, km 4,800<br />06760 Navalvillar de Pela, Badajoz</p>
-                <Button url="https://maps.app.goo.gl/eQwNPLijpexz96Hs7" text="Cómo llegar" />
-            </div>
-        </article>
-    </section>
+            <h3 class="titulo-lugar">
+                Ceremonia
+                <span>Parroquia Santa María</span>
+            </h3>
 
-    <section id="rsvp" class="statement reveal">
-        <p class="kicker">Confirmación</p>
-        <h2>¿Nos acompañas?</h2>
-        <p>
-            Nos encantará contar contigo. Próximamente compartiremos el formulario
-            para confirmar asistencia y comunicar cualquier alergia o intolerancia.
-        </p>
-        <Button url="https://forms.gle/ER6xNFeWJFc3uii59" text="Confirmar asistencia" />
-    </section>
-
-    <section id="lista" class="gift reveal">
-        <div>
-            <p class="kicker">Lista de bodas</p>
-            <h2>Celebrarlo juntos es lo importante</h2>
-        </div>
-        <div>
-            <p>
-                Lo que más nos apetece es compartir este día con vosotros. Para
-                quienes queráis acompañarnos también en el comienzo de esta nueva
-                etapa, os dejamos nuestro número de cuenta.
+            <p class="direccion">
+                Av. de Burgos, 12,<br />
+                Chamartín, 28036 Madrid
             </p>
-            <div class="iban">
-                <span>IBAN</span>
-                <strong class="no-autolink">ES58 0128 8700 1301 0061 3981</strong>
-                <small>Concepto: “Boda Casilda y Rodrigo”</small>
+
+            <Button
+                url="https://maps.app.goo.gl/7j1RjUwrwnSJxU9m7"
+                text="Cómo llegar"
+            />
+        </div>
+
+        <div class="lugar">
+            <img
+                src="/banquete.webp"
+                alt="Lugar del banquete"
+                class="lugar-img"
+            />
+
+            <h3 class="titulo-lugar">
+                Banquete
+                <span>Finca el Gasco</span>
+            </h3>
+            <p class="direccion">
+                Almte. Marqués de Valterra, 6,<br />
+                28250 Torrelodones, Madrid
+            </p>
+
+            <Button
+                url="https://maps.app.goo.gl/wFE1dBgDovDkoN4D7"
+                text="Cómo llegar"
+            />
+        </div>
+
+        <div class="transporte">
+            <h3 class="titulo-transporte">Transporte</h3>
+            <p class="subtexto">
+                Tras la ceremonia, ofreceremos la posibilidad de transporte en
+                <strong>autobús</strong> y, al finalizar, habrá regreso con parada
+                en Majadahonda y destino final Madrid.
+            </p>
+
+            <img
+                src="/ruta-transporte.svg"
+                alt="Ruta de transporte desde la ceremonia hasta Madrid"
+                class="ruta-transporte"
+                loading="lazy"
+            />
+
+            <div class="chips-transporte" aria-label="Detalles de transporte">
+                <span class="chip">
+                    Salida iglesia: <strong>14:15</strong>
+                    <span class="muted">(aprox.)</span>
+                </span>
+                <span class="chip">
+                    Parking en finca: <strong>Sí</strong>
+                </span>
+                <span class="chip">
+                    Vuelta: <strong>22:00/00:00</strong>
+                    <span class="muted">(por confirmar)</span>
+                </span>
+            </div>
+
+            <div class="puntos-salida">
+                <div class="punto-salida">
+                    <p class="etiqueta-salida">Salida autobús</p>
+                    <h4>Majadahonda</h4>
+                    <p>
+                        C. Las Norias, 66<br />
+                        28221 Majadahonda, Madrid
+                    </p>
+                    <Button
+                        url="https://maps.app.goo.gl/9ZdGU53XgV24nRJx6?g_st=iw"
+                        text="Ver ubicación"
+                    />
+                </div>
+
+                <div class="punto-salida">
+                    <p class="etiqueta-salida">Salida autobús</p>
+                    <h4>Madrid · Av. de América</h4>
+                    <p>
+                        Av. de América, 4<br />
+                        Salamanca, 28028 Madrid
+                    </p>
+                    <Button
+                        url="https://maps.app.goo.gl/CitQHob2tCGrphGJ7?g_st=iw"
+                        text="Ver ubicación"
+                    />
+                </div>
             </div>
         </div>
     </section>
+
+    <hr class="separador" />
+
+    <section id="rsvp" class="bloque">
+        <h3>Confirmación de asistencia</h3>
+        <p>
+            Por favor, confirma tu asistencia.
+            <br />
+            En el formulario podrás indicar si asistirás, el número de acompañantes
+            y cualquier alergia o intolerancia alimentaria.
+        </p>
+
+        <Button
+            url="https://forms.gle/ER6xNFeWJFc3uii59"
+            text="Confirmar asistencia"
+        />
+
+        <p class="nota">
+            <span class="telefono"
+                >Si tienes cualquier duda, puedes escribirnos <br />
+                directamente a:<br />
+                Andrea - <strong>+34 608 52 85 70</strong><br />
+                Julio - <strong>+34 648 06 77 52</strong></span
+            >
+        </p>
+    </section>
+
+    <hr class="separador" />
+
+    <section id="lista" class="bloque">
+        <h3>Lista de bodas</h3>
+        <p>
+            Compartir este día tan especial con vosotros es el mejor regalo que
+            podríamos recibir, pero si deseáis ayudarnos con el comienzo de esta
+            nueva etapa, os facilitamos nuestro número de cuenta:
+        </p>
+
+        <div class="datos-regalo">
+            <p>
+                <strong>IBAN:</strong>
+                <span class="no-autolink">ES96 0182 7402 5602 0171 5023</span>
+            </p>
+
+            <p class="nota">Concepto: “Boda Andrea y Julio”</p>
+        </div>
+    </section>
+
+    <hr class="separador" />
 </main>
-
-<script>
-    const revealEls = document.querySelectorAll(".reveal");
-    const observer = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("revealed");
-                    observer.unobserve(entry.target);
-                }
-            });
-        },
-        { threshold: 0.08, rootMargin: "0px 0px -30px 0px" }
-    );
-
-    revealEls.forEach((el) => observer.observe(el));
-</script>
 
 <style>
     *,
@@ -90,215 +170,317 @@ import Button from "./Button.astro";
     }
 
     main {
-        background: #f4f6f0;
-        color: #293d34;
-        padding: clamp(42px, 6vw, 74px) clamp(18px, 5vw, 72px) 76px;
-    }
-
-    .reveal {
-        opacity: 0;
-        transform: translateY(18px);
-        transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .reveal.revealed {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .intro,
-    .places,
-    .statement,
-    .gift {
-        width: min(100%, 1040px);
-        margin-inline: auto;
-    }
-
-    .intro {
-        margin-bottom: clamp(58px, 8vw, 92px);
-        padding: 22px 0 26px;
-        border-top: 1px solid rgba(52, 78, 66, 0.15);
-        border-bottom: 1px solid rgba(52, 78, 66, 0.15);
-        display: grid;
-        grid-template-columns: 1fr auto 1fr;
-        align-items: baseline;
-        gap: 22px;
         text-align: center;
-    }
-
-    .intro p,
-    .kicker,
-    .iban span,
-    .iban small {
-        font-family: "Montserrat", sans-serif;
-    }
-
-    .intro p {
+        background-color: #fffaf9;
         margin: 0;
-        color: rgba(52, 78, 66, 0.6);
-        font-size: 0.64rem;
-        font-weight: 500;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-    }
-
-    .intro strong {
-        font-family: "Cormorant Garamond", serif;
-        font-size: clamp(2rem, 4vw, 3.25rem);
-        font-weight: 400;
-        line-height: 1;
-        letter-spacing: 0;
-    }
-
-    .places {
-        margin-bottom: clamp(62px, 9vw, 106px);
-    }
-
-    .place {
-        display: grid;
-        grid-template-columns: minmax(250px, 0.56fr) minmax(0, 1fr);
-        gap: clamp(28px, 5vw, 70px);
-        align-items: center;
-        padding: clamp(30px, 4vw, 48px) 0;
-        border-top: 1px solid rgba(52, 78, 66, 0.14);
-    }
-
-    .place:last-child {
-        border-bottom: 1px solid rgba(52, 78, 66, 0.14);
-    }
-
-    .place__image {
-        margin: 0;
-        aspect-ratio: 1.34;
-        overflow: hidden;
-        background: #e4eadf;
-    }
-
-    .place__image img {
         width: 100%;
-        height: 100%;
-        display: block;
-        object-fit: cover;
-        filter: saturate(0.8) contrast(0.96);
-        transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+        padding: clamp(32px, 6vh, 80px) 16px;
+        overflow-x: hidden;
     }
 
-    .place:hover .place__image img {
-        transform: scale(1.025);
+    .info-rapida {
+        margin: 0 auto 44px;
     }
 
-    .kicker {
-        margin: 0 0 9px;
-        color: #708275;
-        font-size: 0.63rem;
-        font-weight: 500;
+    .info-principal {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(18px, 2.6vw, 26px);
+        letter-spacing: 0.08em;
+        color: #3f3a36;
+        margin: 0;
+    }
+
+    .info-secundaria {
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.75rem;
         letter-spacing: 0.18em;
         text-transform: uppercase;
+        color: rgba(63, 58, 54, 0.55);
+        margin-top: 8px;
     }
 
-    h2 {
-        margin: 0;
-        color: #293d34;
+    .lugares {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(32px, 6vw, 80px);
+        max-width: 900px;
+        margin: 0 auto;
+        position: relative;
+        min-width: 0;
+    }
+
+    .lugares::after {
+        content: "";
+        position: absolute;
+        top: 0%;
+        bottom: 50%;
+        left: 50%;
+        width: 1px;
+        background: rgba(63, 58, 54, 0.15);
+    }
+
+    .lugar {
+        min-width: 0;
+    }
+
+    .lugar h3 {
         font-family: "Cormorant Garamond", serif;
-        font-size: clamp(2rem, 4.2vw, 3.6rem);
-        font-weight: 400;
-        letter-spacing: 0;
-        line-height: 1.04;
+        font-size: 1.4rem;
+        margin-bottom: 8px;
+        color: #3f3a36;
     }
 
-    .place__body p:not(.kicker),
-    .statement > p:not(.kicker),
-    .gift p {
-        color: rgba(41, 61, 52, 0.68);
+    .direccion {
         font-family: "Montserrat", sans-serif;
-        font-size: 0.86rem;
-        font-weight: 300;
-        line-height: 1.82;
+        font-size: 0.85rem;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        color: rgba(63, 58, 54, 0.75);
     }
 
-    .place__body p:not(.kicker) {
-        margin: 19px 0 23px;
+    .lugar-img {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto 24px;
+        display: block;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        border-radius: 999px;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
     }
 
-    .statement {
-        max-width: 690px;
-        margin-bottom: clamp(62px, 9vw, 106px);
-        padding: clamp(28px, 4vw, 42px) 0;
-        text-align: center;
-        border-top: 1px solid rgba(52, 78, 66, 0.15);
-        border-bottom: 1px solid rgba(52, 78, 66, 0.15);
+    .separador {
+        border: none;
+        height: 1px;
+        width: 100%;
+        max-width: 520px;
+        margin: 72px auto 56px;
+        background: linear-gradient(
+            to right,
+            transparent,
+            rgba(63, 58, 54, 0.25),
+            transparent
+        );
     }
 
-    .statement > p:not(.kicker) {
-        max-width: 570px;
-        margin: 18px auto 24px;
+    .bloque {
+        max-width: 900px;
+        margin: 56px auto 0;
+        padding: 0 6px;
     }
 
-    .gift {
-        display: grid;
-        grid-template-columns: minmax(240px, 0.82fr) minmax(0, 1fr);
-        gap: clamp(28px, 6vw, 76px);
-    }
-
-    .gift p {
-        margin: 0 0 22px;
-    }
-
-    .iban {
-        display: grid;
-        gap: 8px;
-        padding-top: 18px;
-        border-top: 1px solid rgba(52, 78, 66, 0.15);
-    }
-
-    .iban span,
-    .iban small {
-        color: rgba(52, 78, 66, 0.58);
-        font-size: 0.61rem;
-        font-weight: 500;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-    }
-
-    .iban strong {
-        color: #293d34;
+    .bloque h3 {
         font-family: "Cormorant Garamond", serif;
-        font-size: clamp(1.35rem, 2.8vw, 2.15rem);
-        font-weight: 400;
-        overflow-wrap: anywhere;
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        color: #3f3a36;
     }
 
-    @media (max-width: 760px) {
-        main {
-            padding: 34px 18px 58px;
-        }
+    .bloque p {
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.9rem;
+        line-height: 1.7;
+        color: rgba(63, 58, 54, 0.75);
+        margin-bottom: 16px;
+    }
 
-        .intro,
-        .place,
-        .gift {
+    .bloque .nota {
+        font-size: 0.65rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(63, 58, 54, 0.35);
+        margin-top: 18px;
+    }
+
+    .nota .telefono {
+        font-weight: 500;
+        color: rgba(63, 58, 54, 0.5);
+        letter-spacing: 0.08em;
+        white-space: nowrap;
+    }
+
+    .datos-regalo {
+        max-width: 560px;
+        margin: 18px auto 0;
+        padding: 18px;
+        border: 1px solid rgba(63, 58, 54, 0.12);
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.55);
+    }
+
+    .no-autolink {
+        color: inherit;
+        text-decoration: none;
+        font-weight: inherit;
+        -webkit-touch-callout: none;
+    }
+
+    .titulo-lugar {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.4rem;
+        margin-bottom: 8px;
+        color: #3f3a36;
+        line-height: 1.2;
+    }
+
+    .titulo-lugar span {
+        display: block;
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.75rem;
+        letter-spacing: 0.14em;
+        color: rgba(63, 58, 54, 0.55);
+        margin-top: 4px;
+    }
+
+    .ruta-transporte {
+        width: 100%;
+        max-width: 900px;
+        height: auto;
+        display: block;
+        margin: 14px auto 0;
+        opacity: 0.95;
+    }
+
+    .transporte {
+        grid-column: 1 / -1;
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 24px 0 10px;
+        text-align: center;
+        background-color: #fffaf9;
+        position: relative;
+        z-index: 2;
+    }
+
+    .titulo-transporte {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.4rem;
+        margin: 0 0 8px;
+        color: #3f3a36;
+    }
+
+    .subtexto {
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.85rem;
+        line-height: 1.7;
+        color: rgba(63, 58, 54, 0.75);
+        max-width: 620px;
+        margin: 0 auto 14px;
+    }
+
+    .chips-transporte {
+        display: grid;
+        grid-template-columns: repeat(3, max-content);
+        justify-content: center;
+        gap: 12px;
+        margin: 14px auto 0;
+        width: 100%;
+    }
+
+    .chip {
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.72rem;
+        line-height: 1;
+        color: rgba(63, 58, 54, 0.75);
+
+        padding: 6px 10px;
+        border: 1px solid rgba(63, 58, 54, 0.14);
+        border-radius: 999px;
+
+        background: rgba(255, 255, 255, 0.55);
+        letter-spacing: 0.02em;
+        white-space: nowrap;
+    }
+
+    .chip strong {
+        font-weight: 600;
+        color: rgba(63, 58, 54, 0.9);
+    }
+
+    .chip .muted {
+        color: rgba(63, 58, 54, 0.55);
+    }
+
+    .puntos-salida {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+        margin: 28px auto 0;
+        max-width: 760px;
+    }
+
+    .punto-salida {
+        padding: 24px 20px;
+        border: 1px solid rgba(63, 58, 54, 0.12);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.65);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.03);
+    }
+
+    .etiqueta-salida {
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.68rem;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: rgba(63, 58, 54, 0.45);
+        margin-bottom: 8px;
+    }
+
+    .punto-salida h4 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.35rem;
+        color: #3f3a36;
+        margin: 0 0 8px;
+    }
+
+    .punto-salida p {
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.84rem;
+        line-height: 1.7;
+        color: rgba(63, 58, 54, 0.75);
+        margin: 0 0 18px;
+    }
+
+    @media (max-width: 600px) {
+        .lugares {
             grid-template-columns: 1fr;
+            gap: 28px;
         }
 
-        .intro {
-            gap: 8px;
-            text-align: left;
+        .lugares::after {
+            display: none;
         }
 
-        .place {
-            gap: 22px;
+        .lugar-img {
+            max-width: 220px;
+            aspect-ratio: 16 / 10;
+            border-radius: 999px;
         }
 
-        .place__image {
-            aspect-ratio: 1.42;
+        .bloque .nota {
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
         }
 
-        .statement {
-            text-align: left;
+        .chips-transporte {
+            grid-template-columns: 1fr;
+            justify-items: center;
+            gap: 10px;
         }
 
-        .statement > p:not(.kicker) {
-            margin-left: 0;
-            margin-right: 0;
+        .chip {
+            white-space: normal;
+            text-align: center;
+        }
+
+        .puntos-salida {
+            grid-template-columns: 1fr;
+            gap: 14px;
+        }
+
+        .punto-salida {
+            padding: 20px 16px;
         }
     }
 </style>
